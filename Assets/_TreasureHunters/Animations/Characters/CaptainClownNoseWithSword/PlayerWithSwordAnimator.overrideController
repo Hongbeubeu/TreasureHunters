@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerWithSwordController
+  m_Name: PlayerWithSwordAnimator
   m_Controller: {fileID: 9100000, guid: 1100815ab8778d04bb4ec430b3232f71, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 0cf1e53e4675d964480e37d84201bb92, type: 2}
