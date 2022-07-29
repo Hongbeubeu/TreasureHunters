@@ -11,21 +11,21 @@ public class Importer: AssetPostprocessor {
     }
  
     void OnPreprocessTexture () {
-        var textureImporter = assetImporter as TextureImporter;
-
-        if (textureImporter == null) return;
-        textureImporter.filterMode = FilterMode.Point;
-        //textureImporter.filterMode = FilterMode.Bilinear;
-        //textureImporter.filterMode = FilterMode.Trilinear;
-
-        textureImporter.textureCompression = TextureImporterCompression.Uncompressed;
-        //textureImporter.textureCompression = TextureImporterCompression.Compressed;
-        //textureImporter.textureCompression = TextureImporterCompression.CompressedLQ;
-        //textureImporter.textureCompression = TextureImporterCompression.CompressedHQ;
-
-        //textureImporter.spritePixelsPerUnit = 16;
-        textureImporter.spritePixelsPerUnit = 32;
-
-        //textureImporter.spritePixelsPerUnit = 64;
+//        var textureImporter = assetImporter as TextureImporter;
+//
+//        if (textureImporter == null) return;
+//        textureImporter.filterMode = FilterMode.Point;
+//        //textureImporter.filterMode = FilterMode.Bilinear;
+//        //textureImporter.filterMode = FilterMode.Trilinear;
+//
+//        textureImporter.textureCompression = TextureImporterCompression.Uncompressed;
+//        //textureImporter.textureCompression = TextureImporterCompression.Compressed;
+//        //textureImporter.textureCompression = TextureImporterCompression.CompressedLQ;
+//        //textureImporter.textureCompression = TextureImporterCompression.CompressedHQ;
+//
+//        //textureImporter.spritePixelsPerUnit = 16;
+//        textureImporter.spritePixelsPerUnit = 32;
+//
+//        //textureImporter.spritePixelsPerUnit = 64;
     }
 }
