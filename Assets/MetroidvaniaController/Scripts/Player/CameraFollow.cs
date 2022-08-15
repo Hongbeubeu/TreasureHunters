@@ -1,56 +1,72 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CameraFollow : MonoBehaviour
 {
-	public float FollowSpeed = 2f;
-	public Transform Target;
+    public float FollowSpeed = 2f;
+    public Transform Target;
+    private CharacterGround ground;
 
-	// Transform of the camera to shake. Grabs the gameObject's transform
-	// if null.
-	private Transform camTransform;
+    // Transform of the camera to shake. Grabs the gameObject's transform
+    // if null.
+    private Transform camTransform;
 
-	// How long the object should shake for.
-	public float shakeDuration = 0f;
+    // How long the object should shake for.
+    public float shakeDuration = 0f;
 
-	// Amplitude of the shake. A larger value shakes the camera harder.
-	public float shakeAmount = 0.1f;
-	public float decreaseFactor = 1.0f;
+    // Amplitude of the shake. A larger value shakes the camera harder.
+    public float shakeAmount = 0.1f;
+    public float decreaseFactor = 1.0f;
 
-	Vector3 originalPos;
+    Vector3 originalPos;
 
-	void Awake()
-	{
-		Cursor.visible = false;
-		if (camTransform == null)
-		{
-			camTransform = GetComponent(typeof(Transform)) as Transform;
-		}
-	}
+    private float preHeight = -99f;
 
-	void OnEnable()
-	{
-		originalPos = camTransform.localPosition;
-	}
+    void Awake()
+    {
+        Cursor.visible = false;
+        if (camTransform == null)
+        {
+            camTransform = GetComponent(typeof(Transform)) as Transform;
+        }
 
-	private void Update()
-	{
-		Vector3 newPosition = Target.position;
-		newPosition.z = -10;
-		transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        ground = Target.transform.GetComponent<CharacterGround>();
+    }
 
-		if (shakeDuration > 0)
-		{
-			camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+    void OnEnable()
+    {
+        originalPos = camTransform.localPosition;
+        preHeight = Target.position.y;
+    }
 
-			shakeDuration -= Time.deltaTime * decreaseFactor;
-		}
-	}
+    private void Update()
+    {
+        var newPosition = Target.position;
+        newPosition.z = -10;
+        
+        if (ground.GetOnGround())
+        {
+            preHeight = Target.transform.position.y;
+        }
+        else
+        {
+            newPosition.y = preHeight;
+        }
 
-	public void ShakeCamera()
-	{
-		originalPos = camTransform.localPosition;
-		shakeDuration = 0.2f;
-	}
+        transform.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+
+        if (!(shakeDuration > 0)) return;
+        camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+        shakeDuration -= Time.deltaTime * decreaseFactor;
+    }
+
+    public void ShakeCamera()
+    {
+        originalPos = camTransform.localPosition;
+        shakeDuration = 0.2f;
+    }
 }

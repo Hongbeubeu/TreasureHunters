@@ -2,13 +2,22 @@
     "name": "New Controls",
     "maps": [
         {
-            "name": "New action map",
+            "name": "Player",
             "id": "689011ec-8125-4b45-b6db-ae7c739cb7a8",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Movement",
+                    "type": "Value",
                     "id": "d1e1d359-2382-4372-b17a-1cc477f9971f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "358bd6b0-95b8-4ec9-903f-f4b6a84eb7aa",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -18,14 +27,47 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "b02ac997-9a31-4b06-92df-d2a7b634bbbc",
-                    "path": "",
+                    "id": "66f94a81-04cc-42db-8196-c1db3ad6d4cd",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "New action",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e883327b-03ae-4331-afea-554fcf9ca6d2",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "ae2341b6-4069-4ba7-b3f8-9435e3a1c08d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "9a20b43a-f500-49f3-893f-1d89de9b0650",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
