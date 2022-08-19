@@ -47,14 +47,14 @@ public class CameraFollow : MonoBehaviour
         var newPosition = Target.position;
         newPosition.z = -10;
         
-        if (ground.GetOnGround())
-        {
-            preHeight = Target.transform.position.y;
-        }
-        else
-        {
-            newPosition.y = preHeight;
-        }
+//        if (ground.GetOnGround())
+//        {
+//            preHeight = Target.transform.position.y;
+//        }
+//        else
+//        {
+//            newPosition.y = preHeight;
+//        }
 
         transform.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
 
