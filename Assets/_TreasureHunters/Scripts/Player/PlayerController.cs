@@ -9,12 +9,16 @@ public class PlayerController : MonoBehaviour
     private float atkTime1 = 0.5f;
     private float atkTime2 = 0.5f;
     private float atkTime3 = 0.5f;
+    private float atkAirTime1 = 0f;
+    private float atkAirTime2 = 0.5f;
     private float attackCooldown;
 
+    public CharacterGround _OnGround;
     public bool isAttacking;
 
     private void Awake()
     {
+        _OnGround = GetComponent<CharacterGround>();
         var animationClips = animator.runtimeAnimatorController.animationClips;
         for (int i = 0; i < animationClips.Length; i++)
         {
@@ -32,6 +36,11 @@ public class PlayerController : MonoBehaviour
             {
                 atkTime3 = animationClips[i].length;
             }
+
+            if (animationClips[i].name == "AirAttack1" || animationClips[i].name == "AirAttack2")
+            {
+                atkAirTime1 += animationClips[i].length;
+            }
         }
     }
 
@@ -41,23 +50,31 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsAttacking", true);
         isAttacking = true;
         var rand = Random.Range(0, 1f);
-        if (rand < 0.4f)
+        if (_OnGround.GetOnGround())
         {
-            animator.SetTrigger("Attack1");
-            attackCooldown = atkTime1;
-            return;
-        }
+            if (rand < 0.4f)
+            {
+                animator.SetTrigger("Attack1");
+                attackCooldown = atkTime1;
+                return;
+            }
 
-        if (rand < 0.7f)
+            if (rand < 0.7f)
+            {
+                animator.SetTrigger("Attack2");
+                attackCooldown = atkTime2;
+
+                return;
+            }
+
+            animator.SetTrigger("Attack3");
+            attackCooldown = atkTime3;
+        }
+        else
         {
-            animator.SetTrigger("Attack2");
-            attackCooldown = atkTime2;
-
-            return;
+            animator.SetTrigger("AirAttack1");
+            attackCooldown = atkAirTime1;
         }
-
-        animator.SetTrigger("Attack3");
-        attackCooldown = atkTime3;
     }
 
     private void Update()
