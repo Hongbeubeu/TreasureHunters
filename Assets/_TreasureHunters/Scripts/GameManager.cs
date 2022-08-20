@@ -1,12 +1,7 @@
-﻿using Ultilities.Core.Runtime.Singleton;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
-    public override void Init()
-    {
-    }
-
     public void Test()
     {
         Debug.Log("test");

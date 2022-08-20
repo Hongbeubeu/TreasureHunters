@@ -78,11 +78,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GameManager.Instance.Test();
-        }
-
         if (attackCooldown > 0)
         {
             attackCooldown -= Time.deltaTime;
