@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 9da070052b9ab664ea19d4711278d495
+labels:
+- FastPool
+- Pool
+- AutoDespawn
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
