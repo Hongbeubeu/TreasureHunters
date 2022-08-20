@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float atkTime2 = 0.5f;
     private float atkTime3 = 0.5f;
     private float atkAirTime1 = 0f;
-    private float atkAirTime2 = 0.5f;
     private float attackCooldown;
 
     public CharacterGround _OnGround;
