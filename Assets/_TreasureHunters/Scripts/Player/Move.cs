@@ -13,6 +13,7 @@ public class Move : MonoBehaviour
     public Vector2 _velocity;
     private Rigidbody2D _body;
     private CharacterGround _ground;
+    public Transform _trans;
 
     private float _maxSpeedChange, _acceleration;
     private bool _onGround;
@@ -40,17 +41,17 @@ public class Move : MonoBehaviour
         }
 
         _controller.animator.SetFloat("Speed", Mathf.Abs(_desiredVelocity.x));
-        var rotation = transform.eulerAngles;
+        var scale = _trans.localScale;
         if (_desiredVelocity.x > 0)
         {
-            rotation.y = 0;
+            scale.x = 1;
         }
         else if (_desiredVelocity.x < 0)
         {
-            rotation.y = 180;
+            scale.x = -1;
         }
 
-        transform.eulerAngles = rotation;
+        _trans.localScale = scale;
     }
 
     private void FixedUpdate()

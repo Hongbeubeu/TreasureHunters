@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private float atkAirTime1 = 0f;
     private float attackCooldown;
 
-    public CharacterGround _OnGround;
+    private CharacterGround _OnGround;
     public bool isAttacking;
 
     private void Awake()
