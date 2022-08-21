@@ -26,6 +26,15 @@ public class AllyMeleeBehaviour : AIBehaviour
         idleAction = new AllyIdleAction(idleState, aiController, this);
         moveAction = new AllyMoveAction(idleState, aiController, this);
         attackAction = new AttackAction(idleState, aiController, this);
+
+        idleState.AddTransition((int)FSMTransition.ToMove, moveState);
+        idleState.AddTransition((int)FSMTransition.ToAttack, attackState);
+
+        moveState.AddTransition((int)FSMTransition.ToIdle, idleState);
+        moveState.AddTransition((int)FSMTransition.ToAttack, attackState);
+
+        attackState.AddTransition((int)FSMTransition.ToIdle, idleState);
+        attackState.AddTransition((int)FSMTransition.ToMove, moveState);
     }
 
     public override void ChangeState(AiState _newState)
