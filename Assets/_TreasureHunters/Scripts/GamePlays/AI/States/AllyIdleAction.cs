@@ -2,10 +2,10 @@
 
 public class AllyIdleAction : FSMAction
 {
-    private Character aiController;
+    private GameCharacter aiController;
     private AIBehaviour aiBehaviour;
 
-    public AllyIdleAction(FSMState _owner, Character _aiController, AIBehaviour _aiBehaviour) : base(_owner)
+    public AllyIdleAction(FSMState _owner, GameCharacter _aiController, AIBehaviour _aiBehaviour) : base(_owner)
     {
         aiController = _aiController;
         aiBehaviour = _aiBehaviour;

@@ -3,10 +3,10 @@ using Ultimate.Core.Runtime.FSM;
 
 public abstract class AIBehaviour : IDisposable
 {
-    protected Character aiController;
+    protected GameCharacter aiController;
     protected FSM fsm;
 
-    public AIBehaviour(Character _aiController)
+    public AIBehaviour(GameCharacter _aiController)
     {
         this.aiController = _aiController;
     }

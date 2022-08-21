@@ -10,7 +10,7 @@ public class AllyMeleeBehaviour : AIBehaviour
 
     public AiState CurrentState { get; private set; }
 
-    public AllyMeleeBehaviour(Character _aiController) : base(_aiController)
+    public AllyMeleeBehaviour(GameCharacter _aiController) : base(_aiController)
     {
         Init();
     }

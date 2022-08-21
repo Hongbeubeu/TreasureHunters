@@ -2,10 +2,10 @@
 
 public class AttackAction : FSMAction
 {
-    private Character aiController;
+    private GameCharacter aiController;
     private AIBehaviour aiBehaviour;
 
-    public AttackAction(FSMState _owner, Character _aiController, AIBehaviour _aiBehaviour) : base(_owner)
+    public AttackAction(FSMState _owner, GameCharacter _aiController, AIBehaviour _aiBehaviour) : base(_owner)
     {
         aiController = _aiController;
         aiBehaviour = _aiBehaviour;

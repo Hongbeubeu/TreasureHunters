@@ -2,23 +2,30 @@
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour
+public class Attack : MonoBehaviour
 {
-    public Animator animator;
-
+    [SerializeField] private GameCharacter gameCharacter;
     private float atkTime1 = 0.5f;
     private float atkTime2 = 0.5f;
     private float atkTime3 = 0.5f;
     private float atkAirTime1 = 0f;
     private float attackCooldown;
 
-    private CharacterGround _OnGround;
     public bool isAttacking;
+
+    public bool IsAttacking
+    {
+        get => isAttacking;
+        set
+        {
+            isAttacking = value; 
+            gameCharacter.characterAction.SetAttacking(isAttacking);
+        }
+    }
 
     private void Awake()
     {
-        _OnGround = GetComponent<CharacterGround>();
-        var animationClips = animator.runtimeAnimatorController.animationClips;
+        var animationClips = gameCharacter.characterAction.animator.runtimeAnimatorController.animationClips;
         for (int i = 0; i < animationClips.Length; i++)
         {
             if (animationClips[i].name == "Attack1")
@@ -46,32 +53,30 @@ public class PlayerController : MonoBehaviour
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!context.started || attackCooldown > 0) return;
-        animator.SetBool("IsAttacking", true);
-        isAttacking = true;
+        IsAttacking = true;
         var rand = Random.Range(0, 1f);
-        if (_OnGround.GetOnGround())
+        if (gameCharacter.IsOnGround())
         {
             if (rand < 0.4f)
             {
-                animator.SetTrigger("Attack1");
+                gameCharacter.characterAction.SetAttack1();
                 attackCooldown = atkTime1;
                 return;
             }
 
             if (rand < 0.7f)
             {
-                animator.SetTrigger("Attack2");
+                gameCharacter.characterAction.SetAttack2();
                 attackCooldown = atkTime2;
-
                 return;
             }
 
-            animator.SetTrigger("Attack3");
+            gameCharacter.characterAction.SetAttack3();
             attackCooldown = atkTime3;
         }
         else
         {
-            animator.SetTrigger("AirAttack1");
+            gameCharacter.characterAction.SetAirAttack1();
             attackCooldown = atkAirTime1;
         }
     }
@@ -84,8 +89,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("IsAttacking", false);
-            isAttacking = false;
+            IsAttacking = false;
         }
     }
 }
